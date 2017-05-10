@@ -3,9 +3,6 @@ package view;
 import model_Data.Level;
 
 public class Game {
-	// מקום בזיכרון שהמשחק נשמר
-
-
 		   private static Game game = new Game( );
 
 		   /* A private Constructor prevents any other

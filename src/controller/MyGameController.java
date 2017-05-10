@@ -14,16 +14,16 @@ import commands.CommandMove;
 import commands.CommandSave;
 import model.IModel;
 import view.Cli;
-import view.View;
+import view.IView;
 
 public class MyGameController implements Observer {
 	private IModel model;
-	private View view;
+	private IView view;
 	private Controller controller;
 	private Map<String, Command> commands;
 	private Cli cli;
 	
-	public MyGameController(IModel model, View view) {
+	public MyGameController(IModel model, IView view) {
 		this.model = model;
 		this.view = view;
 		initCommands();

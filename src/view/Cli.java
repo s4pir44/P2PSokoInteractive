@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import model.IModel;
 
-public class Cli extends Observable implements View{
+public class Cli extends Observable implements IView{
 
 
 		boolean runORexit = true;

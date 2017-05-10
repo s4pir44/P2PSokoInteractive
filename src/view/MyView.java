@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Observable;
 
-public class MyView extends Observable implements View {
+public class MyView extends Observable implements IView {
 
 	@Override
 	public void displayError(String msg) {

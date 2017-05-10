@@ -6,13 +6,13 @@ import java.io.IOException;
 import controller.MyGameController;
 import model.Model;
 import view.Cli;
-import view.GUI;
+import view.viewGUI;
 
 public class Run {
 
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
-		GUI ui = new GUI();
-		ui.bla(null);
+		viewGUI ui = new viewGUI();
+		ui.launch(args);
 		Model model = new Model();
 		
  		Cli view = new Cli();
