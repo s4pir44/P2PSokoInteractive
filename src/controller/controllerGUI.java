@@ -1,9 +1,8 @@
-package view;
+package controller;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-public class viewGUIcontroler extends Canvas{
+public class controllerGUI{
 	
 	int [][] mazeData;
 

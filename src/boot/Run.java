@@ -11,8 +11,7 @@ import view.viewGUI;
 public class Run {
 
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
-		viewGUI ui = new viewGUI();
-		ui.launch(args);
+		
 		Model model = new Model();
 		
  		Cli view = new Cli();

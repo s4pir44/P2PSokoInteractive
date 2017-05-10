@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
 
+import javafx.stage.Stage;
 import model.IModel;
 
 public class Cli extends Observable implements IView{
@@ -55,13 +56,7 @@ public class Cli extends Observable implements IView{
 	
 		 }
 
-
+		@Override
+		public void start(Stage primaryStage) throws Exception {}
 	}
-
-/*command.execute();
-//if we won 
-if(Game.getInstance().getLevel().ifTBoxTargetsFull())
-{
-	break;
-}*/
 
