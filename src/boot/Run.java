@@ -15,6 +15,7 @@ public class Run {
 		Model model = new Model();
 		
  		Cli view = new Cli();
+		
 		MyGameController controller = new MyGameController(model, view);
 		
 		model.addObserver(controller);

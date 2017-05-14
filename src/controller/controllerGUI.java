@@ -1,33 +1,57 @@
 package controller;
 
-import javafx.scene.canvas.GraphicsContext;
+import java.io.File;
+import java.net.URL;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 
-public class controllerGUI{
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.stage.FileChooser;
+import view.DisplayerGUI;
+
+public class ControllerGUI implements Initializable{
 	
-	int [][] mazeData;
+	int[][] mazeData={
+			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	};
+	
+	@FXML
+	
+	DisplayerGUI mazeDyspayer;
+	
+	public ControllerGUI(){
+		mazeDyspayer.setMazeData(mazeData);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		mazeDyspayer.setMazeData(mazeData);
+		
+	}
+
+	public int[][] getMazeData() {
+		return mazeData;
+	}
 
 	public void setMazeData(int[][] mazeData) {
 		this.mazeData = mazeData;
 	}
 	
-	private void redrow() {
-		if (mazeData != null){
-			
-			double W = getWidth();
-			double H = getHeight();
-			double w = W/mazeData[0].length;
-			double h = H/ mazeData.length;
-			GraphicsContext gc = getGraphicsContext2D();
-			for(int i=0;i<mazeData.length;i++)
-				for(int j=0;j<mazeData[0].length;j++){
-					if(mazeData[i][j]!=0)//
-						gc.fillRect(j*w, i*h, w, h);
-				}
-					
-			
-			
+	public void openFile(){
+		FileChooser fc=new FileChooser();
+		fc.setTitle("Choose level");
+		fc.setInitialDirectory(new File("./Resources"));
+		File choosen = fc.showOpenDialog(null);
+		if(choosen!=null){
+			System.out.println(choosen.getName());
 		}
-
+		
 	}
-
+	
 }

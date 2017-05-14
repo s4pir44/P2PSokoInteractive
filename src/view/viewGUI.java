@@ -1,18 +1,15 @@
 package view;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -49,12 +46,12 @@ public class viewGUI extends Application implements IView,Initializable{
 		
 	}
 	
-	public void openFile()
+	/*public void openFile()
 	{
 		FileChooser fc= new FileChooser();
 		fc.setTitle("Opem maze file");
-	//	fc.setInitialDirectory(new File("./resorcs"));
-	//	fc.selectedExtensionFilterProperty();
+    	fc.setInitialDirectory(new File("./resorcs"));
+		fc.selectedExtensionFilterProperty();
 		File chousen = fc.showOpenDialog(null);
 		if (chousen !=null)
 		{
@@ -63,7 +60,7 @@ public class viewGUI extends Application implements IView,Initializable{
 		}
 			
 	}
-	
+	*/
 	public void stageLoader() {
 		System.out.println("sjgdhfjasd");
 	}
