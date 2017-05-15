@@ -68,7 +68,7 @@ public class DisplayerGUI extends Canvas {
 			double W = getWidth();
 			double H = getHeight();
 			double w = W/mazeData[0].length;
-			double h = H/ mazeData.length;
+			double h = H/ mazeData[0].length;
 			GraphicsContext gc = getGraphicsContext2D();
 			gc.clearRect(0, 0, W, H);
 			for(int i=0;i<mazeData.length;i++)

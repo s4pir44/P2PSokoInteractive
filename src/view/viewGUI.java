@@ -62,7 +62,7 @@ public class viewGUI extends Application implements IView,Initializable{
 	}
 	*/
 	public void stageLoader() {
-		System.out.println("sjgdhfjasd");
+		
 	}
 
 	@Override
