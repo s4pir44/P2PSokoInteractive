@@ -12,8 +12,8 @@ import javafx.scene.paint.Color;
 
 public class DisplayerGUI extends Canvas {
 
-	int [][] mazeData;
-	StringProperty wallFileName;
+	private int [][] mazeData;
+	private StringProperty wallFileName;
 
 
 	int cCol, cRow;

@@ -2,7 +2,6 @@ package controller;
 
 import java.io.File;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
