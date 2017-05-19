@@ -1,0 +1,14 @@
+1. finish the game 
+
+2. hibernate 2-3
+	- learn 
+	- install mysql 
+	- configurate 
+	- implement hibernate in project 
+	- Ask ourself did we answer Eli's questions 
+	- fix if needed 
+3. soko solution until 11.6 
+	- solve by BFS
+	- use BFS to show solution 
+
+4. connect server 
