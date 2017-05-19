@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -12,8 +13,12 @@ import javafx.scene.paint.Color;
 
 public class DisplayerGUI extends Canvas {
 
+	@FXML
 	private int [][] mazeData;
 	private StringProperty wallFileName;
+	private StringProperty playerFileName;
+	private StringProperty targetFileName;
+	private StringProperty boxFileName;
 
 
 	int cCol, cRow;
@@ -21,9 +26,10 @@ public class DisplayerGUI extends Canvas {
 	public DisplayerGUI() {
 		cCol = 0;
 		cRow = 0;
-		
-		
 		wallFileName = new SimpleStringProperty();
+		playerFileName = new SimpleStringProperty();
+		targetFileName = new SimpleStringProperty();
+		boxFileName = new SimpleStringProperty();
 	}
 	
 	public void setCharacterPoints(int row,int col) {
@@ -33,14 +39,7 @@ public class DisplayerGUI extends Canvas {
 
 	}
 	
-	public String getWallFileName() {
-		return wallFileName.get();
-	}
-
-
-	public void setWallFileName(String wallFileName) {
-		this.wallFileName.set(wallFileName);
-	}
+	
 
 
 
@@ -95,5 +94,37 @@ public class DisplayerGUI extends Canvas {
 		return cRow;
 	}
 
+	
+	public String getWallFileName() {
+		return wallFileName.get();
+	}
 
+	public void setWallFileName(String wallFileName) {
+		this.wallFileName.set(wallFileName);
+	}
+	
+
+	public String getBoxFileName() {
+		return boxFileName.get();
+	}
+
+	public void setBoxFileName(String boxFileName) {
+		this.boxFileName.set(boxFileName);
+	}
+	
+	public String getPlayerFileName() {
+		return playerFileName.get();
+	}
+
+	public void setPlayerFileName(String playerFileName) {
+		this.playerFileName.set(playerFileName);
+	}
+	
+	public String getTargetFileName() {
+		return targetFileName.get();
+	}
+
+	public void setTargetFileName(String targetFileName) {
+		this.targetFileName.set(targetFileName);
+	}
 }

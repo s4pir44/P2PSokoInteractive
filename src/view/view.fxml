@@ -34,7 +34,12 @@
 		</MenuBar>
 	</top>
    <center>
-   <DisplayerGUI  fx:id="mazeDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" wallFileName="./resources/wall.jpg"></DisplayerGUI>
+   <DisplayerGUI  fx:id="mazeDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" 
+   wallFileName="./resources/img/wall.jpg"
+   playerFileName="./resources/img/player.png"
+   boxFileName="./resources/img/box.png"
+   targetFileName ="./resources/img/Target.png"
+   ></DisplayerGUI>
       
          
       

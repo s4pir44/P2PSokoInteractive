@@ -1,8 +1,5 @@
 package view;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
+import util.LevelLoaderGUI;
 
 public class ViewLogic implements Initializable{
 
@@ -67,22 +64,9 @@ public class ViewLogic implements Initializable{
 
 
 	public void loadLevel() throws IOException{
-		//GET data from server side
-		
-		mazeData = new int[7][7];
-
-		int lineCounter = 0;
-		File file = new File("./resources/level1.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file)); 
-
-		for(String line; (line = br.readLine()) != null;) {
-			for (int i = 0; i < line.length(); i++) {
-				mazeData[lineCounter][i] = line.indexOf(i);
-			}
-			lineCounter++;
-		}
-		
-		mazeDisplayer.setMazeData(mazeData);
+		//GET data from server
+		LevelLoaderGUI levelLoaderGUI = new LevelLoaderGUI();
+		mazeDisplayer.setMazeData(levelLoaderGUI.loadLevel("./resources/level1.txt"));
 	}
 }
 
