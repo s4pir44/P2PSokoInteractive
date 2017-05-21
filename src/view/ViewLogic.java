@@ -14,7 +14,7 @@ import util.LevelLoaderGUI;
 
 public class ViewLogic implements Initializable{
 
-	int[][] mazeData=null;
+	char[][] mazeData=null;
 
 	@FXML
 	DisplayerGUI mazeDisplayer;
@@ -57,7 +57,7 @@ public class ViewLogic implements Initializable{
 
 	}
 
-	public int[][] getMazeData() {
+	public char[][] getMazeData() {
 		return mazeData;
 	}
 

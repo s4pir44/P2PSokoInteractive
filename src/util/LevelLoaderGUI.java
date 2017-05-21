@@ -11,9 +11,9 @@ import java.util.Map;
 public class LevelLoaderGUI {
 
 	
-	public int[][] loadLevel(String fileName) throws FileNotFoundException, IOException{
+	public char[][] loadLevel(String fileName) throws FileNotFoundException, IOException{
 		Map<String,Integer> dimenssions = GetMaxDimensions(fileName);
-		int[][] mazeData = new int[dimenssions.get("col")][dimenssions.get("row")];
+		char[][] mazeData = new char[dimenssions.get("row")][dimenssions.get("col")];
 		
 		int lineCounter = 0;
 		File file = new File(fileName);
@@ -21,10 +21,19 @@ public class LevelLoaderGUI {
 		
 		for(String line; (line = br.readLine()) != null && lineCounter != mazeData.length;) {
 			System.out.println(line);
-			for (int i = 0; i < line.length(); i++) {
-				System.out.println(i);
-				mazeData[lineCounter][i] = line.indexOf(i);
+			int index = 0;
+			while(index < dimenssions.get("col"))
+			{
+				if(index < line.length())
+				{
+					System.out.println(index);
+					
+					mazeData[lineCounter][index] = line.charAt(index);
+				}
+				else mazeData[lineCounter][index] = 'z';
+				++index;
 			}
+			
 			lineCounter++;
 		}
 		return mazeData;

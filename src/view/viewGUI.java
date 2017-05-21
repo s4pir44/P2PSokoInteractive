@@ -33,7 +33,7 @@ public class viewGUI extends Application implements IView,Initializable{
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			 BorderPane root = FXMLLoader.load(getClass().getResource("view.fxml")); 
-			 Scene scene= new Scene(root, 400, 400); 
+			 Scene scene= new Scene(root, 500, 500); 
 			 primaryStage.setScene(scene); 
 			 primaryStage.show();
 			 primaryStage.setScene(scene);

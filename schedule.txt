@@ -1,14 +1,17 @@
 1. finish the game 
+   - present images (commit push)
+   - connect commands (commit push)
 
-2. hibernate 2-3
+2. soko solution until 11.6 
+	- solve by BFS
+	- use BFS to show solution 
+
+3. hibernate 2-3
 	- learn 
 	- install mysql 
 	- configurate 
 	- implement hibernate in project 
 	- Ask ourself did we answer Eli's questions 
 	- fix if needed 
-3. soko solution until 11.6 
-	- solve by BFS
-	- use BFS to show solution 
 
 4. connect server 
