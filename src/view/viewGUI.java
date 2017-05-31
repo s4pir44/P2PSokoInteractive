@@ -5,17 +5,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.MyGameController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Model;
 
 
 public class viewGUI extends Application implements IView,Initializable{
-
+ 
+	ViewLogic viewLogicController;
+	/*public String[] args;*/
+	/*public MyGameController gameController;*/
 	
+	/*public void initArguments(String[] myArgs)
+	{
+		args = myArgs;
+	}*/
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -32,13 +41,46 @@ public class viewGUI extends Application implements IView,Initializable{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			 BorderPane root = FXMLLoader.load(getClass().getResource("view.fxml")); 
+			
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
+			BorderPane root = (BorderPane) loader.load();
+			 viewLogicController = loader.getController();
+        
+			Model model = new Model();
+			
+	 		
+	 		
+			
+			MyGameController controller = new MyGameController(model, this);
+			viewLogicController.addObserver(controller);
+			model.addObserver(controller);
+			//view.addObserver(controller);
+			
+			
+			
+			
+			
+		/*	 BorderPane root = FXMLLoader.load(getClass().getResource("view.fxml")); 
+			
+			 FXMLLoader loader2 = new FXMLLoader(getClass().getResource("view.fxml"));
+
+		        
+		        ViewLogic viewLogicController = ((ViewLogic)loader2.getController());
+		        */
+		//	viewLogicController.addObserver(gameController);
+
 			 Scene scene= new Scene(root, 500, 500); 
 			 primaryStage.setScene(scene); 
 			 primaryStage.show();
 			 primaryStage.setScene(scene);
 			 primaryStage.sizeToScene();
 			 primaryStage.show();
+			 
+			 
+			 
+			 
+			 
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
@@ -65,19 +107,35 @@ public class viewGUI extends Application implements IView,Initializable{
 		
 	}
 
-	@Override
-	public void displayError(String msg) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void start() throws ClassNotFoundException, FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
 		
 	}
+
+	
+	@Override
+	public void displayError(String msg) {
+		System.out.println("Error: " + msg);
+
+	 }
+/*
+	public void registerController(MyGameController controller) {
+		// TODO Auto-generated method stub
+		gameController = controller;
+	}
+*/
+
+	@Override
+	public void redraw() {
+		// TODO Auto-generated method stub
+		
+		viewLogicController.sendRedraw();
+	}		
+}
 
 
 
 	
-}
+

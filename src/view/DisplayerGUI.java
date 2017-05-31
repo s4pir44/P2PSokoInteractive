@@ -2,6 +2,8 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,11 +12,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import model_Data.Level;
+import model_Data.SokobanObj;
+import util.ArrayTransformer;
 
 public class DisplayerGUI extends Canvas {
 
 	@FXML
-	private char[][] mazeData;
+	private SokobanObj[][] mazeData;
+	/*Level level = null;*/
 	private StringProperty wallFileName;
 	private StringProperty playerFileName;
 	private StringProperty targetFileName;
@@ -22,11 +28,9 @@ public class DisplayerGUI extends Canvas {
 	private StringProperty floorFileName;
 
 
-	int cCol, cRow;
+	private int cCol, cRow;
 	
 	public DisplayerGUI() {
-		cCol = 0;
-		cRow = 0;
 		wallFileName = new SimpleStringProperty();
 		playerFileName = new SimpleStringProperty();
 		targetFileName = new SimpleStringProperty();
@@ -35,20 +39,17 @@ public class DisplayerGUI extends Canvas {
 	}
 	
 	public void setCharacterPoints(int row,int col) {
-		cRow=row;
-		cCol=col;
-		redraw();
+		/*level.getPlayer().setLocation(row,col); 
+		redraw();*/
 
 	}
+
 	
 	
-
-
-
-	public void setMazeData(char[][] mazeData) {
+	/*public void setMazeData(SokobanObj[][] mazeData) {
 		this.mazeData = mazeData;
 		redraw();
-	}
+	}*/
 	
 	private void drawMazeObject(GraphicsContext gc, Image mazeObjImage, double x, double y, double w, double h)
 	{
@@ -58,9 +59,16 @@ public class DisplayerGUI extends Canvas {
 			gc.drawImage(mazeObjImage, x,y,w,h);
 	}
 	
-	private void redraw() {
-		if (mazeData != null){
-	
+	public void redraw() {
+		/*if (mazeData != null){*/
+		Level l = getLevel();
+		if(l == null)
+			return;
+		
+		
+		ArrayList<ArrayList<SokobanObj>> b = l.getBoard();
+			mazeData = ArrayTransformer.parseArray(b);
+			//TODO delete after debug 
 			Image wall = null;
 			Image player = null;
 			Image box = null;
@@ -87,31 +95,22 @@ public class DisplayerGUI extends Canvas {
 			for(int i=0;i<mazeData.length;i++)
 				for(int j=0;j<mazeData[0].length;j++){
 					
-					if(mazeData[i][j]!='z')
+					if(mazeData[i][j] != null)
 						{
-						if(mazeData[i][j]=='#')
+						if(mazeData[i][j].getName().equalsIgnoreCase("wall"))
 							imageMazeObj = wall;
-						if(mazeData[i][j]=='!')
+						if(mazeData[i][j].getName().equalsIgnoreCase("player"))
 							imageMazeObj = player;
-						if(mazeData[i][j]=='o')
+						if(mazeData[i][j].getName().equalsIgnoreCase("target"))
 							imageMazeObj = target;
-						if(mazeData[i][j]=='@')
+						if(mazeData[i][j].getName().equalsIgnoreCase("box"))
 							imageMazeObj = box;
-						if(mazeData[i][j]==' ')
+						if(mazeData[i][j].getName().equalsIgnoreCase("space"))
 							imageMazeObj = floor;
 						drawMazeObject(gc,imageMazeObj, j*w, i*h, w, h);
-						
 						}
-						
-					
-					
 				}
-					
-		/*	gc.setFill(Color.RED);
-			gc.fillOval(cCol*w,cRow*h, w, h);*/
-			
-		}
-
+	/*	}*/
 	}
 
 	public int getcCol() {
@@ -164,4 +163,12 @@ public class DisplayerGUI extends Canvas {
 	public void setFloorFileName(String floorFileName) {
 		this.floorFileName.set(floorFileName);
 	}
+
+	public Level getLevel() {
+		return Game.getInstance().getLevel();
+	}
+
+	/*public void setLevel(Level level) {
+		this.level = level;
+	}*/
 }

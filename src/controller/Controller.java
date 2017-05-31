@@ -7,12 +7,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import commands.Command;
+import view.IView;
 
 public class Controller {
 	private BlockingQueue<Command> queue;
 	private boolean isStopped = false;
-	
-	public Controller() {
+	IView view;
+	public Controller(IView v) {
+		view = v;
 		queue = new ArrayBlockingQueue<Command>(10);		
 	}
 	
@@ -32,8 +34,10 @@ public class Controller {
 				while (!isStopped) {
 					try {
 						Command cmd = queue.poll(1, TimeUnit.SECONDS);
-						if (cmd != null)
-							cmd.execute();						
+						if (cmd != null){
+							cmd.execute();	
+							view.redraw();
+						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					} catch (FileNotFoundException e) {

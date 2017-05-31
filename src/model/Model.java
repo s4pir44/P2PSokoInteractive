@@ -27,7 +27,7 @@ public class Model extends Observable implements IModel {
 	public void move(String direction) throws FileNotFoundException, ClassNotFoundException, IOException
 	{		
 		Movement mv= new Movement();
-		mv.mackeMove(direction);
+		mv.mackMove(direction);
 
 	}
 		

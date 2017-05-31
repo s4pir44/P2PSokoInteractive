@@ -27,7 +27,7 @@ public class MyGameController implements Observer {
 		this.model = model;
 		this.view = view;
 		initCommands();
-		controller = new Controller();
+		controller = new Controller(view);
 		controller.start();
 	}
 	

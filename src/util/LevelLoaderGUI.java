@@ -19,6 +19,7 @@ public class LevelLoaderGUI {
 		File file = new File(fileName);
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
 		
+		
 		for(String line; (line = br.readLine()) != null && lineCounter != mazeData.length;) {
 			System.out.println(line);
 			int index = 0;

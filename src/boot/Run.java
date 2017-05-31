@@ -6,21 +6,26 @@ import java.io.IOException;
 import controller.MyGameController;
 import model.Model;
 import view.Cli;
+import view.viewGUI;
 
 public class Run {
 
 	public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException, IOException {
 		
-		Model model = new Model();
+	//	Model model = new Model();
 		
- 		Cli view = new Cli();
+ 		//Cli view = new Cli();
+ 		//viewGUI vg = new viewGUI(); 
+ 		//vg.initArguments(args);
+ 		
 		
-		MyGameController controller = new MyGameController(model, view);
+		//MyGameController controller = new MyGameController(model, vg);
+		//vg.registerController(controller);
+		//model.addObserver(controller);
+		//view.addObserver(controller);
 		
-		model.addObserver(controller);
-		view.addObserver(controller);
 		
-		view.start();
+		//vg.start();
 	}
 
 }

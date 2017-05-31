@@ -125,54 +125,37 @@ public class Level  implements Serializable{
 		this.player = player;
 	}
 
-
-
 	public String getLevelName() {
 		return levelName;
 	}
-
-
 
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
 	}
 
-
-
 	public ArrayList<ArrayList<SokobanObj>> getBoard() {
 		return board;
 	}
-
-
 
 	public void setBoard(ArrayList<ArrayList<SokobanObj>> board) {
 		this.board = board;
 	}
 
-
-
 	public ArrayList<BoxTarget> getTargets() {
 		return targets;
 	}
-
-
 
 	public void setTargets(ArrayList<BoxTarget> targets) {
 		this.targets = targets;
 	}
 
-
-
 	public Player getPlayer() {
 		return player;
 	}
 
-
-
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
 	
 	//if all boxTargerts rae full
     public Boolean ifTBoxTargetsFull()

@@ -11,7 +11,7 @@ public class Movement {
 	
 	public Movement(){}
 	
-	public void mackeMove(String arg) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void mackMove(String arg) throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		Policy policy = new Policy();
 		int num;

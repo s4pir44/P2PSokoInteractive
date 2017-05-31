@@ -62,8 +62,6 @@ public class MyTextLevelLoader implements LevelLoader {
 				targets.add(boxTarget);
 				y++;
 				break;
-				
-		
 			}
 			
 				

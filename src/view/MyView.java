@@ -27,5 +27,11 @@ public class MyView extends Observable implements IView {
 		
 	}
 
+	@Override
+	public void redraw() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

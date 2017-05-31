@@ -13,7 +13,7 @@ public class Cli extends Observable implements IView{
 
 		boolean runORexit = true;
 		IModel model;
-		MyView mv = new MyView();
+		//MyView mv = new MyView();
 
 		public Cli() 
 		{
@@ -58,5 +58,11 @@ public class Cli extends Observable implements IView{
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {}
+
+		@Override
+		public void redraw() {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
