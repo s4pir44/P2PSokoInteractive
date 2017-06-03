@@ -3,15 +3,23 @@ package view;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model_Data.Level;
 import model_Data.SokobanObj;
 import util.ArrayTransformer;
@@ -65,6 +73,20 @@ public class DisplayerGUI extends Canvas {
 		if(l == null)
 			return;
 		
+		if(l.ifTBoxTargetsFull()){
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	Alert alert = new Alert(AlertType.INFORMATION, "You have Won!!!", ButtonType.OK);
+		    	alert.setTitle("Game is finished");
+		        alert.setHeaderText(null);
+		        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+		        alert.showAndWait();
+		        Platform.exit();
+		        System.exit(0);		
+		    			
+		    }
+		});}
 		
 		ArrayList<ArrayList<SokobanObj>> b = l.getBoard();
 			mazeData = ArrayTransformer.parseArray(b);
@@ -101,7 +123,7 @@ public class DisplayerGUI extends Canvas {
 							imageMazeObj = wall;
 						if(mazeData[i][j].getName().equalsIgnoreCase("player"))
 							imageMazeObj = player;
-						if(mazeData[i][j].getName().equalsIgnoreCase("target"))
+						if(mazeData[i][j].getName().equalsIgnoreCase("boxTarget"))
 							imageMazeObj = target;
 						if(mazeData[i][j].getName().equalsIgnoreCase("box"))
 							imageMazeObj = box;

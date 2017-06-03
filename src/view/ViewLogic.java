@@ -1,7 +1,5 @@
 package view;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,10 +14,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model_Data.Level;
-import model_Data.MyTextLevelLoader;
-import model_Data.SokobanObj;
-import util.ArrayTransformer;
-import util.LevelLoaderGUI;
 
 public class ViewLogic extends Observable implements Initializable{
 

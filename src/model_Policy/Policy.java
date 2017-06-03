@@ -89,10 +89,10 @@ public class Policy extends Level {
 	private boolean isPointInBoardLimits(Level level, Point p)
 	{
 		int numOfLines = level.getBoard().size();
-		if(p.getX() >  numOfLines - 1)
+		if((p.getX() >  numOfLines - 1) || (p.getX() < 0))
 			return false;
 		int columnLimit = level.getBoard().get((int)p.getX()).size();
-		if(p.getY() >  columnLimit - 1)
+		if((p.getY() >  columnLimit - 1) || (p.getY() < 0))
 			return false;
 		return true;
 	}
@@ -104,7 +104,7 @@ public class Policy extends Level {
 
 		if(level.getBoard().get((int)p.getX()).get((int)p.getY()) != null)///
 		{
-			if(level.getBoard().get((int)p.getX()).get((int)p.getY()).getName()=="boxTarget")//אם המיקום על הלוח איפה שהשחקן נמצא הוא 
+			/*if(level.getBoard().get((int)p.getX()).get((int)p.getY()).getName()=="boxTarget")//אם המיקום על הלוח איפה שהשחקן נמצא הוא 
 			{
 				if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="space")
 					return-4;
@@ -112,7 +112,7 @@ public class Policy extends Level {
 					return-5;
 				if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="box")
 					return-6;
-			}
+			}*/
 
 			if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()== "wall")
 			{
@@ -120,17 +120,28 @@ public class Policy extends Level {
 			}
 			if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="space")
 			{
+				//Player is moving to a space object
+				if(level.isObjectPositionOnTarget(p))
+				{
+					//Player is also sitting on a boxTargetObject
+					return -2;
+				}
+				
 				return 1;
 			}
 			if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="boxTarget")
 			{
-				return 0;
+				//Player is moving to a boxTarget object
+				if(level.isObjectPositionOnTarget(p))
+				{
+					//Player is also sitting on a boxTargetObject
+					return -2;
+				}
+				
+				return -3;
 			}
 
-			if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="target")
-			{
-				return -2;
-			}
+			
 			if(level.getBoard().get((int)z.getX()).get((int)z.getY()).getName()=="box")
 			{
 				Point next=WherWeGo(p, z);//לבדוק את הreturn  הראשון 
@@ -141,9 +152,48 @@ public class Policy extends Level {
 				if(nextObj=="wall" || nextObj=="box" ||next==null)
 					return -1;
 				if(nextObj=="boxTarget")
-					return 2;
+				{
+					//Player is moving to a boxTarget object
+					if(level.isObjectPositionOnTarget(p))
+					{
+						if(level.isObjectPositionOnTarget(z))
+						{
+							return -8;
+						}
+						
+						//Player is also sitting on a boxTargetObject
+						return -4;
+					}
+					
+					//Player is moving to a box that is already sitting on target and moves it to another target
+					if(level.isObjectPositionOnTarget(z))
+					{
+						//Player is also sitting on a boxTargetObject
+						return -5;
+					}
+					return -6;
+					  //	return 2;
+				}
 				if(nextObj=="space")
+				{
+					//Player is moving to a box that is already sitting on target and moves it to another target
+					if(level.isObjectPositionOnTarget(z))
+					{
+						if(level.isObjectPositionOnTarget(p))
+						{
+						//player is also on target
+							return -9;
+						}
+						//Player is also sitting on a boxTargetObject
+						return -7;
+					}
+					if(level.isObjectPositionOnTarget(p))
+					{
+					//player is on target
+						return -10;
+					}
 					return 3;
+				}
 			}
 		}
 		return -1;

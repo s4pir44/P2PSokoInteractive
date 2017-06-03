@@ -29,6 +29,13 @@ public class Level  implements Serializable{
 	}
 	
 
+	public SokobanObj getObjectAtPosition(Point p1) 
+	{
+		int linePosition = (int)p1.getX();
+		ArrayList<SokobanObj> lineWithObjsToBeSwapped = board.get(linePosition);
+		SokobanObj firstObj = lineWithObjsToBeSwapped.get((int)p1.getY());
+		return firstObj;
+	}
 	
 	//swap function 
 	//אני לא סגוה על הבדר של X Y
@@ -166,5 +173,22 @@ public class Level  implements Serializable{
     	return true;	
     }
 	
+	public Boolean isObjectPositionOnTarget(Point p)
+    {
+    	for(int i=0;i<getTargets().size();i++)
+    		if(getTargets().get(i).getPlace().getX()==p.getX() &&
+    				getTargets().get(i).getPlace().getY()==p.getY())
+    			return true;
+    	return false;	
+    }
+	
+	public SokobanObj getTargetInPosition(Point p)
+    {
+    	for(int i=0;i<getTargets().size();i++)
+    		if(getTargets().get(i).getPlace().getX()==p.getX() &&
+    				getTargets().get(i).getPlace().getY()==p.getY())
+    			return getTargets().get(i);
+    	return null;	
+    }
 	
 }
