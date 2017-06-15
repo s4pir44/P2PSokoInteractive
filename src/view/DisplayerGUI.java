@@ -2,13 +2,15 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -16,10 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model_Data.Level;
 import model_Data.SokobanObj;
 import util.ArrayTransformer;
@@ -34,7 +32,61 @@ public class DisplayerGUI extends Canvas {
 	private StringProperty targetFileName;
 	private StringProperty boxFileName;
 	private StringProperty floorFileName;
+	private long timeEnd;
+	private long timeStart;
+	private int numberOfSteps=0;
+	private String playerName;
+	private String lavelName;
+	private String timePeriod;
 
+	public double getTimeEnd() {
+		return (double)(System.currentTimeMillis()-this.getTimeStart())/1000;
+	}
+
+	
+	
+	public double getTimeStart() {
+		return (double)(System.currentTimeMillis())/1000;
+	}
+
+	public void setTimeStart() {
+		timeStart = System.currentTimeMillis();
+	}
+
+	public void setTimeEnd() {
+		timeEnd = System.currentTimeMillis();
+		
+		long  millis = timeEnd - timeStart;
+		timePeriod = String.format("%02d min, %02d sec", 
+			    TimeUnit.MILLISECONDS.toMinutes(millis),
+			    TimeUnit.MILLISECONDS.toSeconds(millis) - 
+			    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+			);
+	}
+	
+	public int getNumberOfSteps() {
+		return numberOfSteps;
+	}
+	//Add another step
+	public void setNumberOfSteps() {
+		this.numberOfSteps = this.numberOfSteps+1;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getLavelName() {
+		return lavelName;
+	}
+
+	public void setLavelName(String lavelName) {
+		this.lavelName = lavelName;
+	}
 
 	private int cCol, cRow;
 	
@@ -74,10 +126,12 @@ public class DisplayerGUI extends Canvas {
 			return;
 		
 		if(l.ifTBoxTargetsFull()){
+			setTimeEnd();
 		Platform.runLater(new Runnable() {
 		    @Override
 		    public void run() {
-		    	Alert alert = new Alert(AlertType.INFORMATION, "You have Won!!!", ButtonType.OK);
+		    	Alert alert = new Alert(AlertType.INFORMATION, "You have Won!!!"+"  "+"It only took you :"+timePeriod+"   number of steps:   "+getNumberOfSteps(), ButtonType.OK);
+		        
 		    	alert.setTitle("Game is finished");
 		        alert.setHeaderText(null);
 		        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);

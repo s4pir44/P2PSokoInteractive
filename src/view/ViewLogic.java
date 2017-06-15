@@ -55,16 +55,23 @@ public int tmp;
 				if(event.getCode()== KeyCode.UP){
 					mazeDisplayer.setCharacterPoints(r-1, c);
 					currMove = "up";
+					mazeDisplayer.setNumberOfSteps();
 				}
 				if(event.getCode()== KeyCode.DOWN){
 					mazeDisplayer.setCharacterPoints(r+1, c);
 					currMove = "down";
+					mazeDisplayer.setNumberOfSteps();
+					
 				}if(event.getCode()== KeyCode.RIGHT){
 					mazeDisplayer.setCharacterPoints(r, c+1);
 					currMove = "right";
+					mazeDisplayer.setNumberOfSteps();
+					
 				}if(event.getCode()== KeyCode.LEFT){
 					mazeDisplayer.setCharacterPoints(r, c-1);
 					currMove = "left";
+					mazeDisplayer.setNumberOfSteps();
+					
 				}
 				params.add(currMove);
 				setChanged();
@@ -89,6 +96,7 @@ public int tmp;
 		params.add("./resources/level1.txt");
 		setChanged();
 		notifyObservers(params);
+		mazeDisplayer.setTimeStart();
 	//	mazeDisplayer.redraw();
 		
 		/*//GET data from server

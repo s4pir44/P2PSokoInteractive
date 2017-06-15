@@ -42,9 +42,9 @@ public class Movement {
 				BoxTarget target = (BoxTarget)(Game.getInstance().getLevel().getBoard().get((int)nextNextPoint.getX()).get((int)nextNextPoint.getY()));
 				target.setIfFull(true);
 			}
-			//TODO: this lone swap bitwin box and target
+			
 			Game.getInstance().getLevel().swapTwoBoardObjs(nextNextPoint, nextPoint);
-			//TODO: the line 48 doing swap (2,2)to(2,2)
+			
        		Game.getInstance().getLevel().swapTwoBoardObjs(nextPoint, playerPoint);
 		}
 		if(num==-3)

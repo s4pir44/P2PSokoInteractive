@@ -17,6 +17,7 @@ import model.Model;
 
 public class viewGUI extends Application implements IView,Initializable{
  
+	
 	ViewLogic viewLogicController;
 	/*public String[] args;*/
 	/*public MyGameController gameController;*/
