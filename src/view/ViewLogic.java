@@ -105,9 +105,9 @@ public String currentLevelName = "";
 	{
 		try {
 			//Persistence.createEntityManagerFactory("JavaHelps2");
-		GameRecordDataBaseManager.create("sapir", "Lrvel_1", 3, 69.09);
-        GameRecordDataBaseManager.create("yaniv", "Lrvel_2", 3, 49.09);
-        GameRecordDataBaseManager.create("sigi", "Lrvel_3", 3, 68.09);
+		GameRecordDataBaseManager.create("sapir", "level1", 3, 69.09);
+        GameRecordDataBaseManager.create("yaniv", "level2", 3, 49.09);
+        GameRecordDataBaseManager.create("sigi", "level3", 3, 68.09);
 	
 		}catch(Exception e)
 		{
@@ -136,6 +136,7 @@ public String currentLevelName = "";
 			params.add(choosen.getPath());
 			String tmpName = choosen.getName();
 			currentLevelName = tmpName.substring(0,tmpName.indexOf("."));
+			//TODO: mazeDisplayer.setLevelName(currentLevelName);
 		}
 		setChanged();
 		notifyObservers(params);

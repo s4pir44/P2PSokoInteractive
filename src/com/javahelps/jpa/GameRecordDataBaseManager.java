@@ -100,13 +100,28 @@ public class GameRecordDataBaseManager {
         try {
             // Get a transaction
             transaction = manager.getTransaction();
+            
             // Begin the transaction
             transaction.begin();
 
+            String hql = "SELECT r FROM GameRecord r WHERE r.levelName LIKE :curr_level_name ORDER BY steps";
+          //  Query query = session.createQuery(hql);
+          //  query.setMaxResults(10);
+          //  query.setParameter("curr_level_name", levelName);
+            
+            
+            
             // Get a List of Students
-            students = manager.createQuery("SELECT s FROM GameRecord",
-                    GameRecord.class).getResultList();
+            /*students = manager.createQuery("SELECT s FROM GameRecord",
+                    GameRecord.class).getResultList();*/
 
+            students = manager.createQuery(hql, GameRecord.class).setParameter("curr_level_name", levelName).setMaxResults(10).getResultList();
+       //     students = manager.createQuery("FROM gameRecord R WHERE R.level_name = "+levelName+" ORDER BY R.timer ASC",
+         //           GameRecord.class).getResultList();
+            
+            //query.setMaxResults(10);
+            //query.setParameter("curr_level_name", levelName);
+            
             // Commit the transaction
             transaction.commit();
         } catch (Exception ex) {
@@ -123,6 +138,57 @@ public class GameRecordDataBaseManager {
         return students;
     }
 
+    public static List<GameRecord> readAllByUserName(String userName) {
+
+    	List<GameRecord> students = null;
+
+        // Create an EntityManager
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            // Get a transaction
+            transaction = manager.getTransaction();
+            
+            // Begin the transaction
+            transaction.begin();
+
+            String hql = "SELECT r FROM GameRecord r WHERE r.userName LIKE :currUserName ORDER BY steps";
+          //  Query query = session.createQuery(hql);
+          //  query.setMaxResults(10);
+          //  query.setParameter("curr_level_name", levelName);
+            
+            
+            
+            // Get a List of Students
+            /*students = manager.createQuery("SELECT s FROM GameRecord",
+                    GameRecord.class).getResultList();*/
+
+            students = manager.createQuery(hql, GameRecord.class).setParameter("currUserName", userName).setMaxResults(10).getResultList();
+       //     students = manager.createQuery("FROM gameRecord R WHERE R.level_name = "+levelName+" ORDER BY R.timer ASC",
+         //           GameRecord.class).getResultList();
+            
+            //query.setMaxResults(10);
+            //query.setParameter("curr_level_name", levelName);
+            
+            // Commit the transaction
+            transaction.commit();
+        } catch (Exception ex) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            // Print the Exception
+            ex.printStackTrace();
+        } finally {
+            // Close the EntityManager
+            manager.close();
+        }
+        return students;
+
+    }
+
+    
     /**
      * Delete the existing Student.
      * 
