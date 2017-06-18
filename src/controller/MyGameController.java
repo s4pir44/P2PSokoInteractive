@@ -12,6 +12,7 @@ import commands.CommandExit;
 import commands.CommandLoadFileName;
 import commands.CommandMove;
 import commands.CommandSave;
+import commands.CommandSubmit;
 import model.IModel;
 import view.Cli;
 import view.IView;
@@ -38,6 +39,7 @@ public class MyGameController implements Observer {
 		commands.put("exit", new CommandExit(cli));
 		commands.put("save", new CommandSave(model));
 		commands.put("load", new CommandLoadFileName(model));
+		commands.put("submit", new CommandSubmit(model));
 	}	
 
 	@Override

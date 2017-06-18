@@ -17,7 +17,11 @@
 				<Menu mnemonicParsing="false" text="File">
 					<items>
 						<MenuItem mnemonicParsing="false" onAction="#loadLevel" text="Open Level" />
+						<MenuItem mnemonicParsing="false" onAction="#viewScores" text="Open Popup" />
+						<MenuItem mnemonicParsing="false" onAction="#submit" text="Submit" />
 						<MenuItem mnemonicParsing="false" text="Close" />
+						
+						
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Edit">

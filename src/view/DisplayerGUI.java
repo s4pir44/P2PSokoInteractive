@@ -5,7 +5,11 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import com.javahelps.jpa.GameRecord;
+import com.javahelps.jpa.GameRecordDataBaseManager;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -136,8 +140,13 @@ public class DisplayerGUI extends Canvas {
 		        alert.setHeaderText(null);
 		        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		        alert.showAndWait();
-		        Platform.exit();
-		        System.exit(0);		
+		        
+		        
+		        GameRecordDataBaseManager.create("sapir", "Lrvel_1", 3, 69.09);
+		        GameRecordDataBaseManager.create("yaniv", "Lrvel_2", 3, 49.09);
+		        GameRecordDataBaseManager.create("sigi", "Lrvel_3", 3, 68.09);
+		        //Platform.exit();
+		        //System.exit(0);		
 		    			
 		    }
 		});}
