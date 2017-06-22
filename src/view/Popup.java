@@ -71,8 +71,40 @@ table.setRowFactory( tv -> {
 
 popupwindow.initModality(Modality.APPLICATION_MODAL);
 popupwindow.setTitle("This is a pop up window" + vl.msgTmp);
+
+
+
+final TextField name = new TextField();
+name.setPromptText("Search...");
+name.setPrefColumnCount(10);
+     
+Button button1= new Button("Submit");
+     
+     
+button1.setOnAction(e -> {
+
+	List<GameRecord> list2 = GameRecordDataBaseManager.readAllByToken(name.getText());
+    data.clear();
+	// Now add observability by wrapping it with ObservableList.
+	data.addAll(list2);
+table.setItems(data);
+
+});
+     
+HBox hb = new HBox();
+hb.getChildren().addAll(name, button1);
+hb.setSpacing(10);     
+
+//VBox layout= new VBox(10);
+     
       
+//layout.getChildren().addAll(label1, button1,table);
       
+hb.setAlignment(Pos.CENTER);
+
+
+
+      /*
 Label label1= new Label("Pop up window now displayed");
       
      
@@ -81,12 +113,12 @@ Button button1= new Button("Close this pop up window");
      
 button1.setOnAction(e -> popupwindow.close());
      
-     
+*/     
 
 VBox layout= new VBox(10);
      
       
-layout.getChildren().addAll(label1, button1,table);
+layout.getChildren().addAll(hb, button1,table);
       
 layout.setAlignment(Pos.CENTER);
       
@@ -177,5 +209,48 @@ popupwindow.showAndWait();
 } 
 
 
-}
+public static void DisplayUserDetailsPopUp(int steps, String levelName, double timer){
 
+//GameRecordDataBaseManager.create(GameRecord., currentLevelName, steps, (double)((timerEnd – timerStart)/1000))
+	  
+	Stage popupwindow=new Stage();
+
+	
+	popupwindow.initModality(Modality.APPLICATION_MODAL);
+	popupwindow.setTitle("User Details Submission");
+	      
+	      
+	
+	
+	Label label1= new Label("Please Enter Your Name:");
+	
+	final TextField name = new TextField();
+	name.setPromptText("Enter your first name.");
+	name.setPrefColumnCount(10);
+	     
+	Button button1= new Button("Submit");
+	     
+	     
+	button1.setOnAction(e -> {
+		GameRecordDataBaseManager.create(name.getText(), levelName, steps, timer);
+		popupwindow.close();});
+	     
+	HBox hb = new HBox();
+	hb.getChildren().addAll(label1, name, button1);
+	hb.setSpacing(10);     
+
+	//VBox layout= new VBox(10);
+	     
+	      
+	//layout.getChildren().addAll(label1, button1,table);
+	      
+	hb.setAlignment(Pos.CENTER);
+	      
+	Scene scene1= new Scene(hb, 400, 200);
+	      
+	popupwindow.setScene(scene1);
+	      
+	popupwindow.showAndWait();
+	
+}
+}

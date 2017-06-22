@@ -11,9 +11,10 @@ import javax.persistence.Table;
 @Table(name = "gameRecord")
 public class GameRecord implements Serializable {
     @Id
-    @Column(name = "user_name", unique = true)
+    @Column(name = "user_name", nullable = false)
     private String userName;
 
+    @Id
     @Column(name = "level_name", nullable = false)
     private String levelName;
 

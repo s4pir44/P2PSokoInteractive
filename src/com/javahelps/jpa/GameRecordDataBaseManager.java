@@ -141,7 +141,7 @@ public class GameRecordDataBaseManager {
     public static List<GameRecord> readAllByUserName(String userName) {
 
     	List<GameRecord> students = null;
-
+    	List<GameRecord> students2 = null;
         // Create an EntityManager
         EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction transaction = null;
@@ -152,8 +152,10 @@ public class GameRecordDataBaseManager {
             
             // Begin the transaction
             transaction.begin();
-
-            String hql = "SELECT r FROM GameRecord r WHERE r.userName LIKE :currUserName ORDER BY steps";
+            
+           String hql = "SELECT r FROM GameRecord r WHERE r.userName LIKE :currUserName ORDER BY steps";
+           // String hql = "FROM GameRecord";
+//            String hql2 = "SELECT r FROM GameRecord r ORDER BY steps";
           //  Query query = session.createQuery(hql);
           //  query.setMaxResults(10);
           //  query.setParameter("curr_level_name", levelName);
@@ -163,8 +165,9 @@ public class GameRecordDataBaseManager {
             // Get a List of Students
             /*students = manager.createQuery("SELECT s FROM GameRecord",
                     GameRecord.class).getResultList();*/
-
             students = manager.createQuery(hql, GameRecord.class).setParameter("currUserName", userName).setMaxResults(10).getResultList();
+      //      students = manager.createQuery(hql, GameRecord.class).setMaxResults(10).getResultList();
+  //          students = manager.createQuery(hql2, GameRecord.class).setMaxResults(10).getResultList();
        //     students = manager.createQuery("FROM gameRecord R WHERE R.level_name = "+levelName+" ORDER BY R.timer ASC",
          //           GameRecord.class).getResultList();
             
@@ -188,6 +191,39 @@ public class GameRecordDataBaseManager {
 
     }
 
+    public static List<GameRecord> readAllByToken(String searchToken) 
+    {
+    	List<GameRecord> students = null;
+
+        // Create an EntityManager
+        EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        EntityTransaction transaction = null;
+
+        try {
+            // Get a transaction
+            transaction = manager.getTransaction();
+            
+            // Begin the transaction
+            transaction.begin();
+
+            String hql = "SELECT r FROM GameRecord r WHERE r.userName LIKE :token OR r.levelName LIKE :token ORDER BY steps";
+           
+            students = manager.createQuery(hql, GameRecord.class).setParameter("token", searchToken).setMaxResults(10).getResultList();
+   
+            transaction.commit();
+        } catch (Exception ex) {
+            // If there are any exceptions, roll back the changes
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            // Print the Exception
+            ex.printStackTrace();
+        } finally {
+            // Close the EntityManager
+            manager.close();
+        }
+        return students;
+    }
     
     /**
      * Delete the existing Student.

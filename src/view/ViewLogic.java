@@ -106,6 +106,10 @@ public String currentLevelName = "";
 		try {
 			//Persistence.createEntityManagerFactory("JavaHelps2");
 		GameRecordDataBaseManager.create("sapir", "level1", 3, 69.09);
+		GameRecordDataBaseManager.create("Agam", "level1", 2, 70.09);
+		GameRecordDataBaseManager.create("Agam", "level2", 5, 70.09);
+		GameRecordDataBaseManager.create("sapir", "level2", 5, 69.09);
+		GameRecordDataBaseManager.create("sapir", "level3", 2, 80.09);
         GameRecordDataBaseManager.create("yaniv", "level2", 3, 49.09);
         GameRecordDataBaseManager.create("sigi", "level3", 3, 68.09);
 	
@@ -136,11 +140,13 @@ public String currentLevelName = "";
 			params.add(choosen.getPath());
 			String tmpName = choosen.getName();
 			currentLevelName = tmpName.substring(0,tmpName.indexOf("."));
+		//	mazeDisplayer.setLevelName(currentLevelName);
 			//TODO: mazeDisplayer.setLevelName(currentLevelName);
 		}
 		setChanged();
 		notifyObservers(params);
 		mazeDisplayer.setTimeStart();
+		mazeDisplayer.setLevelName(currentLevelName);
 	//	mazeDisplayer.redraw();
 		
 		/*//GET data from server

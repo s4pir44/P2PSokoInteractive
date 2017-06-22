@@ -42,11 +42,15 @@ public class DisplayerGUI extends Canvas {
 	private String playerName;
 	private String lavelName;
 	private String timePeriod;
+	public String currLevelName;
 
-	public double getTimeEnd() {
-		return (double)(System.currentTimeMillis()-this.getTimeStart())/1000;
+	public void setLevelName(String levelName)
+	{
+		currLevelName = levelName;
 	}
-
+	
+	
+	
 	
 	
 	public double getTimeStart() {
@@ -88,9 +92,6 @@ public class DisplayerGUI extends Canvas {
 		return lavelName;
 	}
 
-	public void setLavelName(String lavelName) {
-		this.lavelName = lavelName;
-	}
 
 	private int cCol, cRow;
 	
@@ -141,10 +142,12 @@ public class DisplayerGUI extends Canvas {
 		        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		        alert.showAndWait();
 		        
+		        Popup.DisplayUserDetailsPopUp(getNumberOfSteps(), currLevelName, (double)((timeEnd - timeStart)/1000));
 		        
+		        /*
 		        GameRecordDataBaseManager.create("sapir", "Lrvel_1", 3, 69.09);
 		        GameRecordDataBaseManager.create("yaniv", "Lrvel_2", 3, 49.09);
-		        GameRecordDataBaseManager.create("sigi", "Lrvel_3", 3, 68.09);
+		        GameRecordDataBaseManager.create("sigi", "Lrvel_3", 3, 68.09);*/
 		        //Platform.exit();
 		        //System.exit(0);		
 		    			
